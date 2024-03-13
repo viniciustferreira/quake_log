@@ -45,7 +45,7 @@ module QuakeLog
     end
 
     def show_stats
-      print parse_total_kills
+      print "#{parse_total_kills}\n\n"
     end
   end
 end

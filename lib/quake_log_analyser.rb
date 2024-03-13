@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module QuakeLog
   module Analyser
-
     def insert_stats(stats, type)
       return nil if stats.to_s.empty?
 

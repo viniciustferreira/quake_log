@@ -11,7 +11,7 @@ RSpec.describe QuakeLog::Parser do
     end
 
     it "receives a wrong file path" do
-      expect { @parser.call("wrong") }.to raise_error
+      expect { @parser.call("wrong") }.to raise_error(Errno::ENOENT)
     end
 
     it "receives a path to a file with normal match end" do

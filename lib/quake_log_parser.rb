@@ -14,12 +14,13 @@ module QuakeLog
       File.open(file_path).each do |line|
         next if unimportant_line(line)
 
-        insert_stats(get_kill_stats(line), "kill") 
-          
         if get_start_match(line)
-          puts show_totals
+          show_stats
           reset_values(game_number += 1)
         end
+
+        insert_stats(get_kill_stats(line), "kill")
+        insert_stats(get_player(line), "player")
       end
     end
   end

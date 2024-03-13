@@ -16,6 +16,7 @@ module QuakeLog
     #{ killer: array_line[k_index], victim: array_line[v_index], mode: array_line[m_index] }
     def add_kill_values(kill_stats)
       @@total_kills += 1
+      @@kills_by_cause[kill_stats[:mode]] = @@kills_by_cause[kill_stats[:mode]].to_i + 1
 
       if kill_stats[:killer] == "<world>"
         @@kills[kill_stats[:victim].to_sym] = @@kills[kill_stats[:victim].to_sym].to_i - 1
@@ -29,6 +30,7 @@ module QuakeLog
       @@players = []
       @@kills = {}
       @@total_kills = 0
+      @@kills_by_cause = {}
     end
 
     def parse_total_kills
@@ -36,7 +38,8 @@ module QuakeLog
         @@match => {
           total_kills: @@total_kills,
           players: @@players.uniq,
-          kills: @@kills
+          kills: @@kills,
+          kills_by_means: @@kills_by_cause
         }
       }
     end

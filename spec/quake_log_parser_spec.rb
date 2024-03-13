@@ -6,8 +6,13 @@ RSpec.describe QuakeLog::Parser do
       @parser = QuakeLog::Parser
       @output = StringIO.new
       @normal_response =
-        '{"game_1"=>{:total_kills=>4, :players=>["Dono da Bola", "Mocinha", "Isgalamido", "Zeh"], :kills=>{:Isgalamido=>1, :Zeh=>-2, :Dono=>-1}}}'
-      @broken_response = '{"game_1"=>{:total_kills=>11, :players=>["Isgalamido", "Dono da Bola", "Mocinha"], :kills=>{:Isgalamido=>-5}}}'
+        '{"game_1"=>{:total_kills=>4, :players=>["Dono da Bola", "Mocinha", "Isgalamido", "Zeh"], '\
+        ':kills=>{:Isgalamido=>1, :Zeh=>-2, :Dono=>-1}, '\
+        ':kills_by_means=>{"MOD_ROCKET"=>1, "MOD_TRIGGER_HURT"=>2, "MOD_FALLING"=>1}}}'
+      @broken_response =
+        '{"game_1"=>{:total_kills=>11, :players=>["Isgalamido", "Dono da Bola", "Mocinha"], '\
+        ':kills=>{:Isgalamido=>-5}, '\
+        ':kills_by_means=>{"MOD_TRIGGER_HURT"=>7, "MOD_ROCKET_SPLASH"=>3, "MOD_FALLING"=>1}}}'
     end
 
     it "receives a wrong file path" do

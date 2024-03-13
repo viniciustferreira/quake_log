@@ -16,14 +16,14 @@ module QuakeLog
     def add_kill_values(kill_stats)
       @@total_kills += 1
 
-      unless kill_stats[:killer] == "<world>"
-        @@kills[kill_stats[:killer].to_sym] = @@kills[kill_stats[:killer].to_sym].to_i + 1
-      else
+      if kill_stats[:killer] == "<world>"
         @@kills[kill_stats[:victim].to_sym] = @@kills[kill_stats[:victim].to_sym].to_i - 1
+      else
+        @@kills[kill_stats[:killer].to_sym] = @@kills[kill_stats[:killer].to_sym].to_i + 1
       end
     end
 
-    def reset_values(game_number)
+    def reset_stats(game_number)
       @@match = "game_#{game_number}"
       @@players = []
       @@kills = {}
@@ -31,8 +31,6 @@ module QuakeLog
     end
 
     def parse_total_kills
-      return "#{@@match}: no kills" if @@total_kills.zero?
-
       {
         @@match => {
           total_kills: @@total_kills,
@@ -43,7 +41,7 @@ module QuakeLog
     end
 
     def show_stats
-      puts parse_total_kills
+      print parse_total_kills
     end
   end
 end

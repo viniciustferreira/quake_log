@@ -34,4 +34,3 @@ module QuakeLog
     end
   end
 end
-#QuakeLog::Parser.call(File.dirname(__FILE__) + "/qgames.log")

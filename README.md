@@ -16,7 +16,7 @@ There is an log file example in the `example` folder
 
 ## Development
 
-It was created as a ruby project.
+It was created as a ruby project, so the `ruby 3.3.0` language must be available in your environment.
 
 ## Contributing
 
